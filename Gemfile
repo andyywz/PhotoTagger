@@ -21,7 +21,7 @@ group :assets do
 end
 
 gem 'jquery-rails'
-gem 'paperclip'
+gem "paperclip", "~> 3.0"
 
 group :development do
   gem "better_errors"

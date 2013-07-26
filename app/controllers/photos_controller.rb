@@ -1,8 +1,12 @@
 class PhotosController < ApplicationController
   def create
-  end
+    params[:photo][:user_id] = current_user.id
+    @photo = Photo.new(params[:photo])
+    @photo.save
 
-  def new
+    respond_to do |format|
+      format.json { render :json => @photo.to_json}
+    end
   end
 
   def edit
@@ -15,8 +19,26 @@ class PhotosController < ApplicationController
   end
 
   def index
+    if params[:user_id]
+      @photos = Photo.all
+    else
+      @photos = Photo.all
+    end
+
+    respond_to do |format|
+      format.html {render :index}
+      format.json {render :json => @photos.to_json}
+    end
+
   end
 
   def show
+    @photo = Photo.find(params[:id])
+
+    respond_to do |format|
+      format.json {render :json => @photo.to_json}
+    end
   end
+
+
 end

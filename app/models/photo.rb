@@ -1,5 +1,5 @@
 class Photo < ActiveRecord::Base
-  attr_accessible :location, :user_id
+  attr_accessible :photopath, :user_id
 
   belongs_to :user
   has_many :tags

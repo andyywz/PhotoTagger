@@ -12,10 +12,17 @@ class UsersController < ApplicationController
   end
 
   def new
-    @user = User.new
   end
 
   def show
     @user = User.find(params[:id])
   end
+
+  def index
+    @users = User.all
+    respond_to do |format|
+      format.json {render :json => @users.to_json}
+    end
+  end
+
 end
